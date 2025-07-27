@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 );
 
 -- Transactions
-CREATE TABLE transactions (
+CREATE TABLE IF NOT EXISTS transactions (
   id INT AUTO_INCREMENT PRIMARY KEY,
   account_id INT,
   type ENUM('deposit','withdraw','transfer'),
