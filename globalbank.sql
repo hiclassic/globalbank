@@ -17,15 +17,14 @@ CREATE TABLE banks (
   country VARCHAR(100)
 );
 
--- Accounts
-CREATE TABLE accounts (
+CREATE TABLE IF NOT EXISTS accounts (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  bank_id INT,
-  customer_id INT,
+  user_id INT,
   account_number VARCHAR(50) UNIQUE,
   currency CHAR(3),
-  balance DECIMAL(15,2),
-  status ENUM('active','inactive','closed')
+  balance DECIMAL(15,2) DEFAULT 0,
+  status ENUM('active','inactive','closed') DEFAULT 'active',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Transactions
