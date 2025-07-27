@@ -1,5 +1,23 @@
+
+
 {
+  "name": "hiclassic/globalbank",
+  "description": "Modern PHP Banking/Accounting System",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "@hiclassic",
+      "email": "hares.ahmed.319@gmail.com"
+    }
+  ],
   "require": {
-    "firebase/php-jwt": "^6.10"
+    "firebase/php-jwt": "^6.10",
+    "vlucas/phpdotenv": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
   }
 }

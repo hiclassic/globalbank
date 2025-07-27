@@ -1,0 +1,24 @@
+# Composer dependencies
+/vendor
+
+# Node dependencies (if any future frontend added)
+/node_modules
+
+# Environment file
+.env
+
+# Logs
+/storage/logs
+
+# Uploads
+/storage/uploads
+
+# IDE files
+*.sublime-workspace
+*.sublime-project
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db

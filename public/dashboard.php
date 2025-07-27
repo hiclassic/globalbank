@@ -1,5 +1,5 @@
 <?php
-require_once '../app/Core/Auth.php';
+require_once '../app/core/auth.php';
 
 if (!Auth::check()) {
     header("Location: index.php");

@@ -1,7 +1,7 @@
 <?php
-require_once '../app/Core/Database.php';
-require_once '../app/Core/Auth.php';
-require_once '../app/Controllers/UserController.php';
+require_once '../app/core/database.php';
+require_once '../app/core/auth.php';
+require_once '../app/controllers/userController.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['register'])) {
