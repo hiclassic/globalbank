@@ -37,3 +37,24 @@ $router->add('GET', '/accounts', function () {
 $method = $_SERVER['REQUEST_METHOD'];
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($method, $path);
+
+
+$router->add('POST', '/deposit', function () {
+    Token::verify();
+
+    $tc = new TransactionController();
+    $input = json_decode(file_get_contents('php://input'), true);
+    $tc->deposit($input['account_id'], $input['amount'], $input['currency']);
+    echo json_encode(['status' => 'Deposit Successful']);
+});
+
+$router->add('POST', '/transfer', function () {
+    Token::verify();
+
+    $tc = new TransactionController();
+    $input = json_decode(file_get_contents('php://input'), true);
+    $tc->transfer($input['from_account'], $input['to_account'], $input['amount'], $input['currency']);
+    echo json_encode(['status' => 'Transfer Successful']);
+});
+
+?>

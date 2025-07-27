@@ -1,26 +1,33 @@
-
 <?php
-public function transfer($fromAccount, $toAccount, $amount, $currency) {
-    $db = Database::getInstance();
-    $db->beginTransaction();
-    try {
-        // Debit
-        $db->prepare("UPDATE accounts SET balance = balance - ? WHERE id = ?")
-           ->execute([$amount, $fromAccount]);
 
-        // Credit
-        $db->prepare("UPDATE accounts SET balance = balance + ? WHERE id = ?")
-           ->execute([$amount, $toAccount]);
+require_once __DIR__ . '/../models/transaction.php';
 
-        // Journal Entry
-        $db->prepare("INSERT INTO journal_entries (debit_account_id, credit_account_id, amount, currency) VALUES (?,?,?,?)")
-           ->execute([$fromAccount, $toAccount, $amount, $currency]);
+class TransactionController
+{
+    private $transaction;
 
-        $db->commit();
-    } catch (Exception $e) {
-        $db->rollBack();
-        throw $e;
+    public function __construct()
+    {
+        $this->transaction = new Transaction();
+    }
+
+    public function deposit($account_id, $amount, $currency)
+    {
+        return $this->transaction->create($account_id, 'deposit', $amount, $currency, 'Deposit');
+    }
+
+    public function withdraw($account_id, $amount, $currency)
+    {
+        return $this->transaction->create($account_id, 'withdraw', $amount, $currency, 'Withdraw');
+    }
+
+    public function transfer($from, $to, $amount, $currency)
+    {
+        return $this->transaction->transfer($from, $to, $amount, $currency);
+    }
+
+    public function getTransactions($account_id)
+    {
+        return $this->transaction->getByAccount($account_id);
     }
 }
-
-?>
