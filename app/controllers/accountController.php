@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/Account.php';
+require_once __DIR__ . '/../models/account.php';
 
 class AccountController {
     public function createAccount($user_id, $currency) {
