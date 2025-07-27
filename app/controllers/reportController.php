@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Models/Report.php';
+require_once __DIR__ . '/../models/report.php';
 
 class ReportController {
 
@@ -38,3 +38,4 @@ class ReportController {
         return $this->report->balanceTrend($accountId, $months);
     }
 }
+?>
